@@ -48,8 +48,9 @@ export default function SignIn({ setName }) {
   const classes = useStyles();
   const [disabled, setDisabled] = useState(true);
   const [string, setString] = useState('');
-  console.log(string);
-
+  const [isComposed, setIsComposed] = useState(false);
+  console.log({ disabled, string, isComposed}); //{}の意味は？//
+ 
   useEffect(() => {
     const disabled = string === ''
     setDisabled(disabled)
@@ -73,13 +74,16 @@ export default function SignIn({ setName }) {
             name="name"
             autoFocus
             onChange={(e) => setString(e.target.value)}
-            onKeyDown={(e) => {
-              console.log({ key: e.key });
+            onKeyDown={(e) => { //keyを押した時に反応//
+              if (isComposed) return; //日本語入力でEnterを押してMainに遷移されないようにisComposedで作業中だと認識させる//
+
               if(e.key === 'Enter') {
               setName(e.target.value);  
-              e.preventDefault();
+              e.preventDefault(); //URLが変わるデフォルトの処理を無効化//
               }
             }}
+            onCompositionStart={() => setIsComposed(true)} //日本語入力のタイピング始めだけ認証される//
+            onCompositionEnd={() => setIsComposed(false)} //日本語入力のタイピング終わりだけ認証される//
           />
           <Button
             type="button"

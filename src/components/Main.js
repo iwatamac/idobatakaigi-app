@@ -12,7 +12,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Main = () => {
+const Main = ({name}) => { //Appから渡されてくるname//
   const classes = useStyles();
 
   return (

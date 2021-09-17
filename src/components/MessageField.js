@@ -3,11 +3,13 @@ import { TextField } from '@material-ui/core';
 
 import { pushMessage } from '../firebase';
 
-const MessageField = ({name, setText, text }) => {
+const MessageField = ({ inputEl, name, setText, text }) => {
   const [isComposed, setIsComposed] = useState(false);
 
   return <TextField
+  autoFocus //入力カーソル自動でつける
   fullWidth={true} //fullWidth{true}は横幅めいいっぱい//
+  inputRef={inputEl}
   onChange={(e) => {setText(e.target.value)//記述の意味//
   }}
   onKeyDown={(e) => { //keyを押した時に反応//

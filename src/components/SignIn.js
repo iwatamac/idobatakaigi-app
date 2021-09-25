@@ -54,7 +54,7 @@ export default function SignIn({ setName /* App.jsから受けとったsetName *
   const [string, setString] = useState('');  //文字//
    //文字があるかないか//
 
-  const [isComposed, setIsComposed] = useState(false);
+  const [isComposed, setIsComposed] = useState(false); /* 日本語入力をしている最中かそうじゃないか */
   console.log({ disabled, string, isComposed}); //{}の意味は？//
  
   useEffect(() => {
@@ -88,25 +88,31 @@ export default function SignIn({ setName /* App.jsから受けとったsetName *
             //keyを押した時に反応//
 
               if (isComposed) return; 
-              //日本語入力でEnterを押してMainに遷移されないようにisComposedで作業中だと認識させる//
+              /* 日本語入力でEnterを押してMainに遷移されないようにisComposedで作業中だと認識させる
+              trueが返る
+              returnでsetNameが処理されなくなる */
 
               if(e.key === 'Enter') {
-              setName(e.target.value);  
+              setName(e.target.value); //Enterを押した時に文字列を渡す//
               e.preventDefault(); //URLが変わるデフォルトの処理を無効化//
               }
             }}
-            onCompositionStart={() => setIsComposed(true)} //日本語入力のタイピング始めだけ認証される//
-            onCompositionEnd={() => setIsComposed(false)} //日本語入力のタイピング終わりだけ認証される//
+            onCompositionStart={() => setIsComposed(true)} 
+            //onCompositionStarは日本語入力のタイピング始めだけ認証される//
+            onCompositionEnd={() => setIsComposed(false)} 
+            /* onCompositionEndは日本語入力のタイピング終わりだけ認証される。
+            onKeyDownと被らないように注意 */
           />
           <Button
-            type="button"
+            type="button"  //type=submitだとurlが書き変わってしまうのでbuttonに変更済み。//
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
             disabled={ disabled }  //ボタンの有効無効を切り替える//
             onClick={() => {
-              setName(string);
+              setName(string);  
+              //クリックしたらsetNameが設定される。stringをAppに渡す//
             }}
           >
             はじめる

@@ -12,6 +12,6 @@ export default () => {
   if (config.signInEnabled && name === '') { //ページ遷移のための処理//
     return <SignIn setName={setName} />;  /* App.jsからSignIn.jsに渡る */
   } else {
-    return <Main name={name} />;
+    return <Main name={name} />; //nameが空じゃなかったらMainが表示される//
     }
   };

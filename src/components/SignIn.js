@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button';  
+//@material-uiは最初ライブラリをyarn addで加えなければいけない。動画は@4.11.0//
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
@@ -15,8 +16,8 @@ function Copyright() {
       <Link 
       color="inherit" 
       href="https://twitter.com/iwatamac"
-      target="_blank"
-      rel="noopener"
+      target="_blank" //タグを増やしてリンク先を生成させる//
+      rel="noopener" //遷移先のページから遷移元のページを操作できる。セキュリティの脆弱性を直す//
       >
         いわたま
       </Link>

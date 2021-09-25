@@ -45,10 +45,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn({ setName }) {
+export default function SignIn({ setName /* App.jsから受けとったsetName */ }) {
+
   const classes = useStyles();
-  const [disabled, setDisabled] = useState(true);
-  const [string, setString] = useState('');
+  const [disabled, setDisabled] = useState(true); //ボタン//
+  //フォームに文字がない(true)だとボタンを押せない。押せる押せないの判断。//
+
+  const [string, setString] = useState('');  //文字//
+   //文字があるかないか//
+
   const [isComposed, setIsComposed] = useState(false);
   console.log({ disabled, string, isComposed}); //{}の意味は？//
  
@@ -56,6 +61,8 @@ export default function SignIn({ setName }) {
     const disabled = string === ''
     setDisabled(disabled)
   }, [string]);
+  //[string]でuseEffect発動。文字が空になったらdisabledにしたい。//
+
 
   return (
     <Container component="main" maxWidth="xs">
@@ -74,9 +81,14 @@ export default function SignIn({ setName }) {
             label="ニックネーム"
             name="name"
             autoFocus
-            onChange={(e) => setString(e.target.value)}
-            onKeyDown={(e) => { //keyを押した時に反応//
-              if (isComposed) return; //日本語入力でEnterを押してMainに遷移されないようにisComposedで作業中だと認識させる//
+            onChange={(e) => setString(e.target.value)} 
+            //文字が入力されて文字列が変化する//
+
+            onKeyDown={(e) => { 
+            //keyを押した時に反応//
+
+              if (isComposed) return; 
+              //日本語入力でEnterを押してMainに遷移されないようにisComposedで作業中だと認識させる//
 
               if(e.key === 'Enter') {
               setName(e.target.value);  
@@ -92,7 +104,7 @@ export default function SignIn({ setName }) {
             variant="contained"
             color="primary"
             className={classes.submit}
-            disabled={ disabled }
+            disabled={ disabled }  //ボタンの有効無効を切り替える//
             onClick={() => {
               setName(string);
             }}

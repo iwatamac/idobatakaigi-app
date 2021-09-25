@@ -8,7 +8,9 @@ import MessageSubmitButton from './MessageSubmitButton.js';
 
 const useStyles = makeStyles({
   root: {
-    gridRow: 2,
+    gridRow: 2, 
+    /* gridで分けた時の線の位置上から数えて何番目の線か
+    その直下から位置づけられる */
     margin: '26px'
   },
 });
@@ -23,7 +25,7 @@ const MessageInputField = ({name}) => {
   <div className={classes.root}>
     <Grid container>
       <Grid item xs={1}>
-        <Avatar src={avatarPath} />
+        <Avatar src={avatarPath} /> {/* Avatarはアイコンの丸いやつ */}
       </Grid>
       <Grid item xs={10}>
         <MessageField

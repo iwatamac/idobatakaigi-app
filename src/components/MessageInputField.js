@@ -17,7 +17,7 @@ const useStyles = makeStyles({
 });
 
 const MessageInputField = ({name}) => {
-  const inputEl = useRef(null);
+  const inputEl = useRef(null); /* focusをあてるため */
   const [text, setText] = useState(''); /* textが入力されているかいないか */
   const classes = useStyles();
   const avatarPath = gravatarPath(name);

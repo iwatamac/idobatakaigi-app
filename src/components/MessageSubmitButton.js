@@ -10,7 +10,7 @@ const MessageSubmitButton = ({inputEl, name, setText, text}) => {
     onClick={() => {
       pushMessage({name, text});
       setText('');
-      inputEl.current.focus();
+      inputEl.current.focus(); /* firebase登録後focusが継続して当たる */
     }}
     >
       <SendIcon />

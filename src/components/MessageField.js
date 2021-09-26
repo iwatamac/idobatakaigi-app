@@ -10,7 +10,7 @@ const MessageField = ({ inputEl, name, setText, text }) => {
   return <TextField
   autoFocus //入力カーソル自動でつける
   fullWidth={true} //fullWidth{true}は横幅めいいっぱい//
-  inputRef={inputEl}
+  inputRef={inputEl} /* textFieldのrefはinputRef */
   onChange={(e) => {setText(e.target.value)//テキストを入力するとsetTextが変わる//
   }}
   onKeyDown={(e) => { //keyを押した時に反応//

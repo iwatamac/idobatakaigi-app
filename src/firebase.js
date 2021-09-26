@@ -23,6 +23,7 @@ const {
   firebase.initializeApp(firebaseConfig);
   const database = firebase.database();
   export const messagesRef = database.ref('messages');
+  /* messageを取得するためにrefが必要なので他のファイルから取り出せるようにexport */
 
   export const pushMessage = ({name, text}) => {
     messagesRef.push({name, text})
